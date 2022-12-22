@@ -1,0 +1,1 @@
+用rust实现的[renren-security](https://gitee.com/renrenio/renren-security.git)后端部分功能, 正在开发中
