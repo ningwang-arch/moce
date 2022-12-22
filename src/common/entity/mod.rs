@@ -1,0 +1,12 @@
+pub mod dict_data;
+pub mod dict_type;
+pub mod sys_dept_entity;
+pub mod sys_log_login_entity;
+pub mod sys_menu_entity;
+pub mod sys_params_entity;
+pub mod sys_role_data_scope_entity;
+pub mod sys_role_entity;
+pub mod sys_role_menu_entity;
+pub mod sys_role_user_entity;
+pub mod sys_user_entity;
+pub mod sys_user_token_entity;
