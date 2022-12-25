@@ -17,5 +17,6 @@ pub fn stage() -> AdHoc {
             .attach(sys_user_controller::stage())
             .attach(sys_dept_controller::stage())
             .attach(sys_role_controller::stage())
+            .attach(sys_params_controller::stage())
     })
 }

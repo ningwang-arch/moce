@@ -129,37 +129,3 @@ impl SysRoleDao {
         .unwrap();
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use std::collections::HashMap;
-
-    use crate::modules::dao::sys_role_dao::SysRoleDao;
-
-    #[test]
-    fn test_page() {
-        let mut params = HashMap::new();
-        params.insert("page".to_string(), "1".to_string());
-        params.insert("limit".to_string(), "10".to_string());
-
-        let page = SysRoleDao::page(&params);
-
-        println!("{:?}", page);
-    }
-
-    #[test]
-    fn test_insert() {
-        let entity = crate::common::entity::sys_role_entity::SysRoleEntity {
-            id: 0,
-            name: "test".to_string(),
-            remark: Some("test".to_string()),
-            create_date: chrono::Local::now().naive_local(),
-            creator: 1,
-            update_date: chrono::Local::now().naive_local(),
-            updater: 1,
-            dept_id: None,
-        };
-
-        SysRoleDao::insert(entity);
-    }
-}

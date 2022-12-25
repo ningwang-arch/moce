@@ -211,24 +211,3 @@ impl SysUserDao {
         .unwrap();
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use std::collections::HashMap;
-
-    use crate::modules::dao::sys_user_dao::SysUserDao;
-
-    #[test]
-    fn test_get_by_username() {
-        let result = SysUserDao::get_by_username("admin".to_string());
-        assert!(result.is_some());
-        println!("{:?}", result);
-    }
-
-    #[test]
-    fn test_page() {
-        let params = HashMap::new();
-        let result = SysUserDao::page(&params);
-        println!("{:?}", result);
-    }
-}

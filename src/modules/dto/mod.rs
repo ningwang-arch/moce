@@ -1,6 +1,7 @@
 pub mod login_dto;
 pub mod password_dto;
 pub mod sys_dept_dto;
+pub mod sys_dict_type_dto;
 pub mod sys_menu_dto;
 pub mod sys_params_dto;
 pub mod sys_role_dto;

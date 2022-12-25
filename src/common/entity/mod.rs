@@ -1,6 +1,7 @@
 pub mod dict_data;
 pub mod dict_type;
 pub mod sys_dept_entity;
+pub mod sys_dict_type_entity;
 pub mod sys_log_login_entity;
 pub mod sys_menu_entity;
 pub mod sys_params_entity;

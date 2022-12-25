@@ -1,56 +1,47 @@
 use chrono::{NaiveDate, NaiveDateTime};
 use mysql::{prelude::FromRow, Value};
 
-use crate::modules::dto::sys_params_dto::SysParamsDto;
+use crate::modules::dto::sys_dict_type_dto::SysDictTypeDto;
 
-#[derive(Debug, Default, Clone)]
-pub struct SysParamsEntity {
+#[derive(Debug, Default)]
+pub struct SysDictTypeEntity {
     pub id: i64,
-    pub param_code: String,
-    pub param_value: String,
-    pub param_type: i32,
+    pub dict_type: String,
+    pub dict_name: String,
     pub remark: String,
+    pub sort: i64,
     pub creator: i64,
     pub create_date: NaiveDateTime,
     pub updater: i64,
     pub update_date: NaiveDateTime,
 }
 
-impl SysParamsEntity {
-    pub fn from(dto: &SysParamsDto) -> SysParamsEntity {
-        SysParamsEntity {
+impl SysDictTypeEntity {
+    pub fn from(dto: &SysDictTypeDto) -> Self {
+        SysDictTypeEntity {
             id: dto.id,
-            param_code: dto.param_code.clone(),
-            param_value: dto.param_value.clone(),
-            param_type: 1,
+            dict_name: dto.dict_name.clone(),
+            dict_type: dto.dict_type.clone(),
             remark: dto.remark.clone(),
-            creator: 1,
+            sort: dto.sort,
+            creator: 0,
             create_date: dto.create_date,
-            updater: 1,
+            updater: 0,
             update_date: dto.update_date,
         }
     }
 }
 
-impl FromRow for SysParamsEntity {
+impl FromRow for SysDictTypeEntity {
     fn from_row_opt(row: mysql::Row) -> Result<Self, mysql::FromRowError> {
-        let (
+        let (id, dict_type, dict_name, remark, sort, creator, create_date, updater, update_date) =
+            mysql::from_row(row);
+        Ok(SysDictTypeEntity {
             id,
-            param_code,
-            param_value,
-            param_type,
+            dict_type,
+            dict_name,
             remark,
-            creator,
-            create_date,
-            updater,
-            update_date,
-        ) = mysql::from_row(row);
-        Ok(SysParamsEntity {
-            id,
-            param_code,
-            param_value,
-            param_type,
-            remark,
+            sort,
             creator,
             create_date: convert(create_date),
             updater,

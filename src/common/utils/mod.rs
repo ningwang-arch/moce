@@ -4,6 +4,7 @@ use rocket::{http::RawStr, request::FromRequest, request::Outcome, Request};
 
 pub mod page_data;
 pub mod perms;
+pub mod sys_params_redis;
 
 pub struct ReqParams {
     pub params: HashMap<String, String>,

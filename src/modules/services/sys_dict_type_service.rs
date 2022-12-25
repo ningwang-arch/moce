@@ -1,6 +1,17 @@
+use std::collections::HashMap;
+
 use crate::{
-    common::entity::dict_type::DictType,
-    modules::dao::{sys_dict_data_dao::SysDictDataDao, sys_dict_type_dao::SysDictTypeDao},
+    common::{
+        entity::{
+            dict_type::DictType, sys_dict_type_entity::SysDictTypeEntity,
+            sys_user_entity::SysUserEntity,
+        },
+        utils::page_data::PageData,
+    },
+    modules::{
+        dao::{sys_dict_data_dao::SysDictDataDao, sys_dict_type_dao::SysDictTypeDao},
+        dto::sys_dict_type_dto::SysDictTypeDto,
+    },
 };
 
 pub struct SysDictTypeService;
@@ -18,5 +29,36 @@ impl SysDictTypeService {
             }
         }
         type_list
+    }
+
+    pub fn page(params: HashMap<String, String>) -> PageData<SysDictTypeDto> {
+        SysDictTypeDao::page(params)
+    }
+
+    pub fn save(dto: SysDictTypeDto, user: SysUserEntity) {
+        let mut entity = SysDictTypeEntity::from(&dto);
+        entity.creator = user.id;
+        entity.updater = user.id;
+        entity.create_date = chrono::Local::now().naive_local();
+        entity.update_date = chrono::Local::now().naive_local();
+
+        SysDictTypeDao::insert(entity);
+    }
+
+    pub fn get(id: i64) -> SysDictTypeDto {
+        let entity = SysDictTypeDao::get(id);
+        SysDictTypeDto::from(&entity)
+    }
+
+    pub fn update(dto: SysDictTypeDto, user: SysUserEntity) {
+        let mut entity = SysDictTypeEntity::from(&dto);
+        entity.updater = user.id;
+        entity.update_date = chrono::Local::now().naive_local();
+
+        SysDictTypeDao::update_by_id(entity);
+    }
+
+    pub fn delete(ids: Vec<i64>) {
+        SysDictTypeDao::delete_batch_ids(ids);
     }
 }

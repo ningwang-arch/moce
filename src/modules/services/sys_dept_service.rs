@@ -169,16 +169,3 @@ impl SysDeptService {
         SysDeptDao::save(entity);
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use std::collections::HashMap;
-
-    use crate::modules::services::sys_dept_service::SysDeptService;
-
-    #[test]
-    fn test_list() {
-        let map = HashMap::new();
-        SysDeptService::list(map);
-    }
-}

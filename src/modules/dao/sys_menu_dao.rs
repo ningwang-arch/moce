@@ -134,21 +134,3 @@ impl SysMenuDao {
         .unwrap();
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use crate::modules::dao::sys_menu_dao::SysMenuDao;
-
-    #[test]
-    fn test_get_menu_list() {
-        let result = SysMenuDao::get_menu_list(Some(0));
-        println!("{:?}", result);
-        println!("size: {}", result.len());
-    }
-
-    #[test]
-    fn test_get_user_menu_list() {
-        let result = SysMenuDao::get_user_menu_list(1067246875800000001, Some(0));
-        println!("{:?}", result);
-    }
-}

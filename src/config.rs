@@ -169,29 +169,3 @@ pub fn load_config() -> Config {
         config
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_config() {
-        let config = Config::default();
-        let config_str = toml::to_string_pretty(&config).unwrap();
-        println!("{}", config_str);
-        let config: Config = toml::from_str(&config_str).unwrap();
-        println!("{:?}", config);
-    }
-
-    #[test]
-    fn test_config_path() {
-        let path = config_path();
-        println!("{:?}", path);
-    }
-
-    #[test]
-    fn test_save_load_config() {
-        let config = load_config();
-        println!("{:?}", config);
-    }
-}
